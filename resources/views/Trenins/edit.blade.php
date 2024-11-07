@@ -10,11 +10,11 @@
                 <input value="{{ $trenins->name }}" type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="name" name="name" required>
             </div>
             <div class="form-group">
-                <label for="tag" class="block text-sm font-medium text-gray-700">Tag</label>
+                <label for="tag" class="block text-sm font-medium text-gray-700">Description</label>
                 <input value="{{ $trenins->description }}" type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="description" name="description" required>
             </div>
             <div class="form-group">
-                <label for="tag" class="block text-sm font-medium text-gray-700">Tag</label>
+                <label for="tag" class="block text-sm font-medium text-gray-700">Address</label>
                 <input value="{{ $trenins->address }}" type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="address" name="address" required>
             </div>
             <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">

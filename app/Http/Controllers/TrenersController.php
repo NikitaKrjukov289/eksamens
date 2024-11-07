@@ -68,13 +68,12 @@ class TrenersController extends Controller
             'name' => 'required',
         ]);
 
-        if ($request->user()->id == auth()->user()->id) {
-            Treners::where('id', $id)
-                ->update([
-                    'name' => $request->input('name')
+        $treners = Treners::findOrFail($id);
+        $treners->update([
+            'name' => $request->input('name'),
                     
         ]);
-    }
+    
 
     return redirect('/treners'); //--------------Šo vajadzēs samainīt!!!!!!
     }

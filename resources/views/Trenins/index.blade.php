@@ -91,7 +91,10 @@
                             {{ $trenins->name }}
                         </a>
                         <div class="tag-container px-6 pt-4 pb-2">
-                            <span class="inline-block shadow-lg bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ $trenins->name }}</span>
+                            <span class="inline-block shadow-lg bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ $trenins->description }}</span>
+                        </div>
+                        <div class="tag-container px-6 pt-4 pb-2">
+                            <span class="inline-block shadow-lg bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ $trenins->address }}</span>
                         </div>
                     </div>
                     <div>
