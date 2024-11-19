@@ -1,8 +1,18 @@
 <x-app-layout>
     <style>
-body {
-    background-image: url('/image/background.jpeg');
+.background {
+    background-image: url('{{ asset("public/image/background.jpg") }}');
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    position: relative;
+    flex-direction: column;
 }
         .grid-container {
             display: grid;

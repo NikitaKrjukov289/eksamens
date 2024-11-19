@@ -3,3 +3,10 @@
 @tailwind utilities;
 
 
+body {
+    background-image: url('/image/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Чтобы фон покрывал всю высоту экрана */
+}
