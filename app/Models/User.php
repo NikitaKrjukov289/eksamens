@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function trenini()
+    {
+        return $this->belongsToMany(Trenins::class, 'user_training', 'user_id', 'trenins_id');
+    }
+    
 }

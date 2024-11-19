@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Trenins;
 use App\Models\Treners;
 use Illuminate\Http\Request;
@@ -117,4 +118,41 @@ class TreninsController extends Controller
         $trenins->treneri()->detach($request['treners']);
         return redirect('/trenins/' . $trenins->id)->with('success', 'Treners izdzests!');
     }
+
+    public function addToMyWorkouts($id)
+{
+    // Получаем текущего пользователя
+    $user = Auth::user();
+
+    // Находим тренировку по ID
+    $trenins = Trenins::findOrFail($id);
+
+    // Добавляем тренировку в "Мои тренировки" пользователя
+    $user->trenini()->attach($trenins);
+
+    return redirect()->back()->with('success', 'Trenins pievienots');
+}
+
+public function addComment(Request $request, $id)
+{
+    $request->validate([
+        'comment' => 'required|string|max:255',
+    ]);
+
+    // Получаем текущего пользователя
+    $user = Auth::user();
+
+    // Находим тренировку
+    $trenins = Trenins::findOrFail($id);
+
+    // Создаем новый комментарий
+    $comment = new Comment();
+    $comment->user_id = $user->id;
+    $comment->trenins_id = $trenins->id;
+    $comment->comment = $request->input('comment');
+    $comment->save();
+
+    return redirect()->back()->with('success', 'Komentars pievienots!');
+}
+
 }

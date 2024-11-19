@@ -89,8 +89,8 @@
     <div class="flex justify-end mb-4">
         <a href="{{ route('treners.create') }}" class="button">
             <div class="button-overlay"></div>
-            <span>Izveidot treneri<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2.5c1.05 0 2.05.27 2.94.74l-2.94 3.95-2.94-3.95A7.5 7.5 0 0112 4.5zM4.5 12c0-1.05.27-2.05.74-2.94l3.95 2.94-3.95 2.94A7.48 7.48 0 014.5 12zm7.5 7.5a7.48 7.48 0 01-2.94-.74l2.94-3.95 2.94 3.95c-.9.47-1.9.74-2.94.74zm4.71-3.62l-3.95-2.94 3.95-2.94a7.5 7.5 0 010 5.88z" />
+            <span>Izveidot treneri  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C9.79 2 8 3.79 8 6C8 8.21 9.79 10 12 10C14.21 10 16 8.21 16 6C16 3.79 14.21 2 12 2ZM4 22V16C4 14.9 4.9 14 6 14H18C19.1 14 20 14.9 20 16V22H4Z"/>
             </svg></span>
         </a>
     </div>

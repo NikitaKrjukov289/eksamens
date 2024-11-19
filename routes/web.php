@@ -13,6 +13,7 @@ Route::resource('trenins', TreninsController::class);
 Route::post('trenins/{trenins}/addtreners',[TreninsController::class, 'addTreners'])->name('trenins.addtreners');
 Route::post('trenins/{trenins}/removetreners',[TreninsController::class, 'removeTreners'])->name('trenins.removetreners');
 Route::resource('treners', TrenersController::class);
+Route::post('/trenini/{trenins}/add-to-my-workouts', [TreninsController::class, 'addToMyWorkouts'])->name('trenins.addToMyWorkouts');
 
 
 Route::get('/dashboard', function () {

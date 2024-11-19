@@ -132,10 +132,18 @@
                                 Delete
                             </button>
                         </form>
+
+                        <form action="{{ route('trenins.addToMyWorkouts', $trenins->id) }}" method="POST">
+        @csrf
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Pievienot manam treninam
+        </button>
+    </form>
+</div>
                     </div>
                 </div>
 
-                <!-- Song List -->
+                
             </div>
             @endforeach
         </div>
