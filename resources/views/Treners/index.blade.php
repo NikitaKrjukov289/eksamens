@@ -1,58 +1,96 @@
 <x-app-layout>
     <style>
-        /* Inspired by twitter.com/marina_uiux */
-        .button {
-            font-size: 17px;
-            border-radius: 12px;
-            background: linear-gradient(180deg, rgb(56, 56, 56) 0%, rgb(36, 36, 36) 66%, rgb(41, 41, 41) 100%);
-            color: rgb(218, 218, 218);
+         .button {
+            font-size: 16px;
+            border-radius: 8px;
+            background-color: #4f46e5;
+            color: #fff;
             border: none;
-            padding: 2px;
-            font-weight: 700;
+            padding: 10px 20px;
+            font-weight: 600;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .button span {
-            border-radius: 10px;
-            padding: 0.8em 1.3em;
-            padding-right: 1.2em;
-            text-shadow: 0px 0px 20px #4b4b4b;
-            width: 100%;
-            display: flex;
+            transition: all 0.3s ease;
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            color: inherit;
-            transition: all 0.3s;
-            background-color: rgb(29, 29, 29);
-            background-image: radial-gradient(at 95% 89%, rgb(15, 15, 15) 0px, transparent 50%), radial-gradient(at 0% 100%, rgb(17, 17, 17) 0px, transparent 50%), radial-gradient(at 0% 0%, rgb(29, 29, 29) 0px, transparent 50%);
+            gap: 8px;
         }
 
-        .button:hover span {
-            background-color: rgb(26, 25, 25);
+        .button:hover {
+            background-color: #357ABD;
+            transform: translateY(-2px);
         }
 
-        .button-overlay {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background: repeating-conic-gradient(rgb(48, 47, 47) 0.0000001%, rgb(51, 51, 51) 0.000104%) 60% 60%/600% 600%;
-            filter: opacity(10%) contrast(105%);
-            -webkit-filter: opacity(10%) contrast(105%);
+        .button:active {
+            background-color: #2B5C94;
+            transform: translateY(0);
         }
 
-        .button svg {
-            width: 15px;
-            height: 15px;
+        .card {
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-button {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-button {
+            background-color: #4CAF50;
+        }
+
+        .view-button:hover {
+            background-color: #388E3C;
+        }
+
+        .edit-button {
+            background-color: #FFC107;
+        }
+
+        .edit-button:hover {
+            background-color: #FFA000;
+        }
+
+        .delete-button {
+            background-color: #F44336;
+        }
+
+        .delete-button:hover {
+            background-color: #D32F2F;
+        }
+        
     </style>
 
     <div class="flex justify-end mb-4">
         <a href="{{ route('treners.create') }}" class="button">
             <div class="button-overlay"></div>
-            <span>Create Song <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 53 58" height="58" width="53">
-                <path stroke-width="9" stroke="currentColor" d="M44.25 36.3612L17.25 51.9497C11.5833 55.2213 4.5 51.1318 4.50001 44.5885L4.50001 13.4115C4.50001 6.86824 11.5833 2.77868 17.25 6.05033L44.25 21.6388C49.9167 24.9104 49.9167 33.0896 44.25 36.3612Z"></path>
+            <span>Izveidot treneri<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2.5c1.05 0 2.05.27 2.94.74l-2.94 3.95-2.94-3.95A7.5 7.5 0 0112 4.5zM4.5 12c0-1.05.27-2.05.74-2.94l3.95 2.94-3.95 2.94A7.48 7.48 0 014.5 12zm7.5 7.5a7.48 7.48 0 01-2.94-.74l2.94-3.95 2.94 3.95c-.9.47-1.9.74-2.94.74zm4.71-3.62l-3.95-2.94 3.95-2.94a7.5 7.5 0 010 5.88z" />
             </svg></span>
         </a>
     </div>

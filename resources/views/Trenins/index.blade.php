@@ -1,74 +1,95 @@
 <x-app-layout>
     <style>
-        /* Container for the entire page layout using GRID */
+        
         .grid-container {
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: auto 1fr;
             gap: 20px;
             padding: 20px;
+            background-color: #f9fafb;
+            font-family: 'Arial', sans-serif;
         }
 
-        /* Header Section (Grid item) */
+        /* Header Section */
         .header {
             grid-column: span 1;
         }
 
-        /* Playlists Section (Grid item) */
+        /* Playlists Section */
         .playlists-container {
-            grid-column: span 1;
             display: grid;
-            gap: 20px;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
 
         /* Playlist Card */
         .playlist-card {
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Flexbox for the song list inside each playlist */
-        .songs-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .song-item {
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-radius: 8px;
-            flex: 1 1 30%; /* Flexbox layout for song items */
-        }
-
-        /* Button styling */
-        .button {
-            font-size: 17px;
             border-radius: 12px;
-            background: linear-gradient(180deg, rgb(56, 56, 56) 0%, rgb(36, 36, 36) 66%, rgb(41, 41, 41) 100%);
-            color: rgb(218, 218, 218);
-            border: none;
-            padding: 2px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .playlist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Flexbox for Card Header */
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .font-bold {
             font-weight: 700;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
         }
 
-        .button span {
-            padding: 0.8em 1.3em;
-            background-color: rgb(29, 29, 29);
+        /* Tag Styling */
+        .tag-container span {
+            background-color: #e5e7eb;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            color: #4b5563;
         }
 
-        .button-overlay {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background: repeating-conic-gradient(rgb(48, 47, 47) 0.0000001%, rgb(51, 51, 51) 0.000104%) 60% 60%/600% 600%;
-            filter: opacity(10%) contrast(105%);
+        /* Button Styling */
+        .button {
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 8px;
+            background-color: #4f46e5;
+            color: #ffffff;
+            padding: 10px 20px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .button:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+        }
+
+        .button-secondary {
+            background-color: #facc15;
+            color: #1f2937;
+        }
+
+        .button-secondary:hover {
+            background-color: #eab308;
+        }
+
+        .button-danger {
+            background-color: #ef4444;
+        }
+
+        .button-danger:hover {
+            background-color: #dc2626;
         }
     </style>
 
