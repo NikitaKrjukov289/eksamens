@@ -1,6 +1,9 @@
 <x-app-layout>
     <style>
-        
+body {
+    background-image: url('/image/background.jpeg');
+    background-size: cover;
+}
         .grid-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -91,6 +94,8 @@
         .button-danger:hover {
             background-color: #dc2626;
         }
+
+    
     </style>
 
     <div class="grid-container">
