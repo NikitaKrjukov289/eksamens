@@ -15,10 +15,7 @@ class Trenins extends Model
         'address',
     ];
 
-    public function users()
-{
-    return $this->belongsToMany(User::class, 'user_training', 'trenins_id', 'user_id');
-}
+
 
   
 }

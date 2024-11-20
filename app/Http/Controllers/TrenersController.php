@@ -77,27 +77,30 @@ class TrenersController extends Controller
             'name' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
+    
+        // Находим тренера по ID
         $treners = Treners::findOrFail($id);
-
-
-        $imagePath = $treners->image;
+    
+        // Сохраняем новый путь к изображению, если было загружено новое изображение
         if ($request->hasFile('image')) {
-            // Удаляем старое изображение из хранилища
-            if ($imagePath) {
-                Storage::disk('public')->delete($imagePath);
-            }
-
+            // Если у тренера уже есть изображение, удалим старое
+    
             // Загружаем новое изображение
             $image = $request->file('image');
             $imagePath = $image->store('images', 'public');
+    
+            // Обновляем тренера с новым изображением
+            $treners->update([
+                'name' => $request->input('name'),
+                'image' => $imagePath,
+            ]);
+        } else {
+            // Если изображение не загружено, просто обновляем имя
+            $treners->update([
+                'name' => $request->input('name'),
+            ]);
         }
-
-        $treners->update([
-            'name' => $request->input('name'),
-            'image' => $imagePath,
-                    
-        ]);
+    
     
 
     return redirect('/treners'); //--------------Šo vajadzēs samainīt!!!!!!
