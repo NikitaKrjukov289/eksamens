@@ -30,11 +30,20 @@ class TrenersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $image->store('images', 'public'); 
+        }
+
         Treners::create([
-            'name' => $request->input('name')
+            'name' => $request->input('name'),
+            'image' => $imagePath,
+
         ]);
 
         return redirect('/treners');
@@ -66,11 +75,27 @@ class TrenersController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $treners = Treners::findOrFail($id);
+
+
+        $imagePath = $treners->image;
+        if ($request->hasFile('image')) {
+            // Удаляем старое изображение из хранилища
+            if ($imagePath) {
+                Storage::disk('public')->delete($imagePath);
+            }
+
+            // Загружаем новое изображение
+            $image = $request->file('image');
+            $imagePath = $image->store('images', 'public');
+        }
+
         $treners->update([
             'name' => $request->input('name'),
+            'image' => $imagePath,
                     
         ]);
     
@@ -85,6 +110,9 @@ class TrenersController extends Controller
     {
 
         $treners = Treners::where('id', $id);
+
+       
+
         $treners->delete();
 
         return redirect('/treners');

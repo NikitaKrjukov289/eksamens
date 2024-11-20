@@ -11,6 +11,7 @@ class Treners extends Model
 
     protected $fillable = [
         'name',
+        'image',
     ];
 
     
