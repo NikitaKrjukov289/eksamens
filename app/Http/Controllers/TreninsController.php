@@ -53,8 +53,8 @@ class TreninsController extends Controller
      */
     public function show(Trenins $trenins)
     {
-        $allTreneri = Treners::all();
-        return view('trenins.show', ['trenins' => $trenins, 'allTreneri' => $allTreneri]);
+      
+        return view('trenins.show', ['trenins' => $trenins]);
     }
 
     /**
@@ -104,20 +104,6 @@ class TreninsController extends Controller
         return redirect('/trenins')->with('success', 'Trenins izdzest!');
     }
 
-    public function addTreners(Request $request, Trenins $trenins) {
-        if ($trenins->treners->contains($request['treners'])) {
-            return redirect()->back()->with('error', 'Treners jau ir pievienots');
-        }
-
-        $trenins->treneri()->attach($request['treners']);
-        return redirect('/trenins/' . $trenins->id)->with('success', 'Treners pievienots!');
-    }
-
-    public function removeTreners(Request $request, Trenins $trenins) {
-        // \Log::debug($request);
-        $trenins->treneri()->detach($request['treners']);
-        return redirect('/trenins/' . $trenins->id)->with('success', 'Treners izdzests!');
-    }
 
     public function addToMyWorkouts($id)
 {

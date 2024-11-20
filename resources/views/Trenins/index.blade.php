@@ -1,166 +1,154 @@
 <x-app-layout>
     <style>
-.background {
-    background-image: url('{{ asset("public/image/background.jpg") }}');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    position: relative;
-    flex-direction: column;
-}
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: auto 1fr;
-            gap: 20px;
-            padding: 20px;
-            background-color: #f9fafb;
+        body {
             font-family: 'Arial', sans-serif;
+            background: url('/images/fitness-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
 
-        /* Header Section */
         .header {
-            grid-column: span 1;
-        }
-
-        /* Playlists Section */
-        .playlists-container {
-            display: grid;
-            gap: 24px;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
-
-        /* Playlist Card */
-        .playlist-card {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .playlist-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Flexbox for Card Header */
-        .flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .font-bold {
-            font-weight: 700;
+        .header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
         }
 
-        /* Tag Styling */
-        .tag-container span {
-            background-color: #e5e7eb;
-            padding: 6px 12px;
-            border-radius: 16px;
-            font-size: 12px;
-            color: #4b5563;
-        }
-
-        /* Button Styling */
-        .button {
-            display: inline-block;
-            font-size: 14px;
-            border-radius: 8px;
-            background-color: #4f46e5;
-            color: #ffffff;
+        .header .button {
+            font-size: 1rem;
             padding: 10px 20px;
-            font-weight: 600;
-            text-align: center;
-            transition: background-color 0.2s, transform 0.2s;
+            background-color: #2563eb;
+            color: #fff;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+            text-decoration: none;
         }
 
-        .button:hover {
-            background-color: #4338ca;
+        .header .button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .trainings-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .training-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .training-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .training-card h2 {
+            font-size: 1.5rem;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .training-card p {
+            font-size: 1rem;
+            color: #374151;
+            margin-bottom: 20px;
+        }
+
+        .training-card .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .training-card .button {
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .training-card .button:hover {
             transform: translateY(-2px);
         }
 
-        .button-secondary {
-            background-color: #facc15;
-            color: #1f2937;
+        .training-card .button.view {
+            background-color: #3b82f6;
         }
 
-        .button-secondary:hover {
-            background-color: #eab308;
+        .training-card .button.view:hover {
+            background-color: #2563eb;
         }
 
-        .button-danger {
+        .training-card .button.edit {
+            background-color: #f59e0b;
+        }
+
+        .training-card .button.edit:hover {
+            background-color: #d97706;
+        }
+
+        .training-card .button.delete {
             background-color: #ef4444;
         }
 
-        .button-danger:hover {
+        .training-card .button.delete:hover {
             background-color: #dc2626;
         }
 
-    
+        .training-card .button.add {
+            background-color: #10b981;
+        }
+
+        .training-card .button.add:hover {
+            background-color: #059669;
+        }
     </style>
 
-    <div class="grid-container">
-        <!-- Header with Create Playlist Button -->
-        <div class="header flex justify-end mb-4">
-            <a href="{{ route('trenins.create') }}" class="button">
-                <div class="button-overlay"></div>
-                <span>Izveidot treninu</span>
-            </a>
-        </div>
+    <!-- Header -->
+    <div class="header">
+        <h1>Pieejami Trenini</h1>
+        <a href="{{ route('trenins.create') }}" class="button">Izveidot Treniņu</a>
+    </div>
 
-        <!-- Playlists Container -->
-        <div class="playlists-container">
-            @foreach ($trenini as $trenins)
-            <div class="playlist-card">
-                <div class="flex justify-between">
-                    <div>
-                        <a href="{{ route('trenins.show', $trenins->id) }}" class="font-bold text-xl mb-2">
-                            {{ $trenins->name }}
-                        </a>
-                        <div class="tag-container px-6 pt-4 pb-2">
-                            <span class="inline-block shadow-lg bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ $trenins->description }}</span>
-                        </div>
-                        <div class="tag-container px-6 pt-4 pb-2">
-                            <span class="inline-block shadow-lg bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ $trenins->address }}</span>
-                        </div>
-                    </div>
-                    <div>
-                        <a href="{{ route('trenins.show', $trenins->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            View
-                        </a>
-                        <a href="{{ route('trenins.edit', $trenins->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                            Edit
-                        </a>
-                        <form action="{{ route('trenins.destroy', $trenins->id) }}" method="POST" class="inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                Delete
-                            </button>
-                        </form>
-
-                        <form action="{{ route('trenins.addToMyWorkouts', $trenins->id) }}" method="POST">
-        @csrf
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Pievienot manam treninam
-        </button>
-    </form>
-</div>
-                    </div>
-                </div>
-
-                
+    <!-- Trainings -->
+    <div class="trainings-container">
+        @foreach ($trenini as $trenins)
+        <div class="training-card">
+            <h2>{{ $trenins->name }}</h2>
+            <p><strong>Apraksts:</strong> {{ $trenins->description }}</p>
+            <p><strong>Adrese:</strong> {{ $trenins->address }}</p>
+            <div class="buttons">
+                <a href="{{ route('trenins.show', $trenins->id) }}" class="button view">Skatīt</a>
+                <a href="{{ route('trenins.edit', $trenins->id) }}" class="button edit">Rediģēt</a>
+                <form action="{{ route('trenins.destroy', $trenins->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="button delete">Dzēst</button>
+                </form>
+                <form action="{{ route('trenins.addToMyWorkouts', $trenins->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    <button type="submit" class="button add">Pievienot manam treniņam</button>
+                </form>
             </div>
-            @endforeach
         </div>
+        @endforeach
     </div>
 </x-app-layout>

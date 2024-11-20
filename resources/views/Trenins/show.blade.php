@@ -84,44 +84,7 @@
                     </form>
                 </div>
             </div>
-
-            <!-- Songs List with Flexbox -->
-            <div class="px-6 pt-4 pb-2">
-                <h1>Treneri</h1>
-                <div class="flex flex-col">
-                    @foreach($trenins->treneri as $treners)
-                    <div class="flex justify-between items-center border-b py-2">
-                        <div class="text-lg">
-                            {{ $treners->name }} 
-                        </div>
-                        <form action="{{ route('trenins.removetreners', $trenins->id) }}" method="POST" class="inline-block">
-                            @csrf
-                            <input type="hidden" name="treners" value="{{ $treners->id }}">
-                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                Remove
-                            </button>
-                        </form>
-                    </div>
-                    @endforeach
-                </div>
-
-                <!-- Add Song Form -->
-                <form action="{{ route('trenins.addstreners', $trenins->id) }}" method="POST" class="inline-block">
-                    @csrf
-                    <div class="flex items-center space-x-4 mt-4">
-                        <label for="treners">Choose a treners:</label>
-                        <select name="treners" id="treners" class="border rounded py-2 px-3">
-                            @foreach($allTreneri as $treners)
-                            <option value="{{ $treners->id }}">{{ $treners->name }}</option>
-                            @endforeach
-                        </select>
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Add
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        @endforeach
+@endforeach
+            
     </div>
 </x-app-layout>
