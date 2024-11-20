@@ -14,5 +14,8 @@ class Treners extends Model
         'image',
     ];
 
-    
+    public function trenins()
+{
+    return $this->hasMany(Trenins::class, "trener_id");
+}
 }

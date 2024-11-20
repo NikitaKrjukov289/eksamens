@@ -13,7 +13,9 @@ Route::resource('trenins', TreninsController::class);
 Route::post('trenins/{trenins}/addtreners',[TreninsController::class, 'addTreners'])->name('trenins.addtreners');
 Route::post('trenins/{trenins}/removetreners',[TreninsController::class, 'removeTreners'])->name('trenins.removetreners');
 Route::resource('treners', TrenersController::class);
-Route::post('/trenini/{trenins}/add-to-my-workouts', [TreninsController::class, 'addToMyWorkouts'])->name('trenins.addToMyWorkouts');
+Route::post('/trenins/{id}/toggle-favorite', [TreninsController::class, 'toggleFavorite'])->name('trenins.toggleFavorite');
+Route::get('/my-favorites', [TreninsController::class, 'myFavorites'])->name('trenins.myFavorites');
+
 
 
 Route::get('/dashboard', function () {

@@ -50,5 +50,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Trenins::class, 'user_training', 'user_id', 'trenins_id');
     }
+
+    public function favoriteTrenins()
+{
+    return $this->belongsToMany(Trenins::class, 'user_trenins');
+}
     
 }

@@ -127,6 +127,10 @@
                 <img src="{{ asset('storage/' . $treners->image) }}" alt="{{ $treners->name }}">
             @endif
             <h2>{{ $treners->name }}</h2>
+
+
+                
+
             <div class="buttons">
                 <a href="{{ route('treners.show', $treners->id) }}" class="button view">Skatīt</a>
                 <a href="{{ route('treners.edit', $treners->id) }}" class="button edit">Rediģēt</a>

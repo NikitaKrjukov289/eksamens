@@ -12,7 +12,7 @@ class TrenersController extends Controller
      */
     public function index()
     {
-        $treneri = Treners::all();
+        $treneri = Treners::with('trenins')->get();
         return view('treners.index', compact('treneri'));
     }
 

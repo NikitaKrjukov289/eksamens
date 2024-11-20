@@ -13,9 +13,16 @@ class Trenins extends Model
         'name',
         'description',
         'address',
+        'trener_id'
     ];
 
+    public function treners()
+    {
+        return $this->belongsTo(Treners::class, 'trener_id');
+    }
 
-
-  
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'user_trenins');
+    }
 }

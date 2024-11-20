@@ -14,7 +14,7 @@ class TreninsController extends Controller
      */
     public function index()
     {
-        $trenini = Trenins::all();
+        $trenini = Trenins::with('treners')->get();
         return view('trenins.index', compact('trenini'));
     }
 
@@ -104,19 +104,26 @@ class TreninsController extends Controller
         return redirect('/trenins')->with('success', 'Trenins izdzest!');
     }
 
+    public function toggleFavorite($id)
+    {
+        $trenins = Trenins::findOrFail($id);
+        $user = auth()->user();
+    
+        // Если тренировка уже в избранном, то удаляем, иначе добавляем
+        if ($user->favoriteTrenins->contains($trenins)) {
+            $user->favoriteTrenins()->detach($trenins);
+        } else {
+            $user->favoriteTrenins()->attach($trenins);
+        }
+    
+        return redirect()->back();
+    }
 
-    public function addToMyWorkouts($id)
+    public function myFavorites()
 {
-    // Получаем текущего пользователя
-    $user = Auth::user();
+    $favorites = auth()->user()->favoriteTrenins;
 
-    // Находим тренировку по ID
-    $trenins = Trenins::findOrFail($id);
-
-    // Добавляем тренировку в "Мои тренировки" пользователя
-    $user->trenini()->attach($trenins);
-
-    return redirect()->back()->with('success', 'Trenins pievienots');
+    return view('trenins.my-favorites', compact('favorites'));
 }
 
 public function addComment(Request $request, $id)
