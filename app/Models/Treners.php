@@ -12,6 +12,8 @@ class Treners extends Model
     protected $fillable = [
         'name',
         'image',
+        'bio', 
+        'contact',
     ];
 
     public function trenins()
