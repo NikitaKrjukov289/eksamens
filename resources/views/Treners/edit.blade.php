@@ -1,23 +1,137 @@
 <x-app-layout>
-    <div class="container mx-auto max-w-lg mt-10 p-6 bg-white shadow-md rounded-lg">
-        <h1 class="text-2xl font-bold mb-6 text-center">Atjaunot Treneri</h1>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+   
+        }
+
+        .trainer-details {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .trainer-details h1 {
+            font-size: 2rem;
+            color: #111827;
+            margin-bottom: 20px;
+        }
+
+        .trainer-details p {
+            font-size: 1rem;
+            color: #374151;
+            margin-bottom: 15px;
+        }
+
+        .training-list {
+            margin-top: 20px;
+        }
+
+        .training-list h2 {
+            font-size: 1.5rem;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .training-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .training-list li {
+            font-size: 1rem;
+            color: #374151;
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #2563eb;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .back-link:hover {
+            background-color: #1d4ed8;
+        }
+
+        .update-trainer-form {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .update-trainer-form h1 {
+            font-size: 2rem;
+            color: #111827;
+            margin-bottom: 20px;
+        }
+
+        .update-trainer-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .update-trainer-form label {
+            font-size: 1rem;
+            color: #374151;
+            margin-bottom: 5px;
+        }
+
+        .update-trainer-form input[type="text"], .update-trainer-form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #374151;
+            margin-top: 5px;
+        }
+
+        .update-trainer-form button {
+            width: 100%;
+            background-color: #2563eb;
+            color: white;
+            font-size: 1.1rem;
+            padding: 12px 0;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .update-trainer-form button:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
+
+    <div class="update-trainer-form">
+        <h1>Atjaunot Treneri</h1>
         <form action="{{ route('treners.update', $treners->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
             <div class="form-group">
-                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input value="{{ $treners->name }}" type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="name" name="name" required>
+                <label for="name">Name</label>
+                <input value="{{ $treners->name }}" type="text" id="name" name="name" required>
             </div>
 
-            
             <div class="form-group">
-                <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
-                <input type="file" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="image" name="image" accept="image/*">
+                <label for="image">Image</label>
+                <input type="file" id="image" name="image" accept="image/*">
             </div>
 
-            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-            Atjaunot Treneri
+            <button type="submit">
+                Atjaunot Treneri
             </button>
         </form>
     </div>

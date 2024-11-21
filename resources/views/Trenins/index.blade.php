@@ -2,8 +2,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: url('/images/fitness-bg.jpg') no-repeat center center fixed;
-            background-size: cover;
+    
         }
 
         .header {
