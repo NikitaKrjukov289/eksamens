@@ -151,15 +151,16 @@
             <p><strong>Apraksts:</strong> {{ $trenins->description }}</p>
             <p><strong>Adrese:</strong> {{ $trenins->address }}</p>
             <div class="buttons">
-                <a href="{{ route('trenins.show', $trenins->id) }}" class="button view">Skatīt</a>
+            <a href="{{ route('trenins.show', $trenins->id) }}" class="button view">Skatīt</a>
+
                 <a href="{{ route('trenins.edit', $trenins->id) }}" class="button edit">Rediģēt</a>
                 
                 <form action="{{ route('trenins.toggleFavorite', $trenins->id) }}" method="POST">
             @csrf
             @if(auth()->user()->favoriteTrenins->contains($trenins))
-                <button type="submit" class="button dislike">Izdzest maniem treniniem</button>
+                <button type="submit" class="button dislike">Izdzest no maniem treniniem</button>
             @else
-                <button type="submit" class="button like">Pievienot no maniem treniniem</button>
+                <button type="submit" class="button like">Pievienot maniem treniniem</button>
             @endif
         </form>
 
@@ -174,3 +175,8 @@
         @endforeach
     </div>
 </x-app-layout>
+
+
+
+<!-- ghghgh
+fgfgf@gm -->

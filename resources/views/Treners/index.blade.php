@@ -132,7 +132,8 @@
                 
 
             <div class="buttons">
-                <a href="{{ route('treners.show', $treners->id) }}" class="button view">Skatīt</a>
+            <a href="{{ route('treners.show', $treners->id) }}" class="button view">Skatīt</a>
+
                 <a href="{{ route('treners.edit', $treners->id) }}" class="button edit">Rediģēt</a>
                 <form action="{{ route('treners.destroy', $treners->id) }}" method="POST" style="display: inline-block;">
                     @csrf

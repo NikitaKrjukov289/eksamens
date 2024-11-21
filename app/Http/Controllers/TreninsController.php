@@ -51,11 +51,17 @@ class TreninsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Trenins $trenins)
-    {
+ 
       
-        return view('trenins.show', ['trenins' => $trenins]);
-    }
+        public function show($id)
+{
+    // Найти тренировку по ID
+    $trenins = Trenins::with('treners')->findOrFail($id); // Загрузка тренировки вместе с тренерами
+
+    // Передать данные в представление
+    return view('trenins.show', compact('trenins'));
+}
+    
 
     /**
      * Show the form for editing the specified resource.
