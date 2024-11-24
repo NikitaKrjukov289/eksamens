@@ -130,6 +130,17 @@
                 <input type="file" id="image" name="image" accept="image/*">
             </div>
 
+            <div class="form-group">
+                <label for="bio">Par treneri:</label>
+                <input value="{{ $treners->bio }}" type="text" id="bio" name="bio" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="contact">Kontakti</label>
+                <input value="{{ $treners->contact }}" type="text" id="contact" name="contact" required>
+            </div>
+
             <button type="submit">
                 Atjaunot Treneri
             </button>

@@ -75,6 +75,8 @@ class TrenersController extends Controller
         $request->validate([
             'name' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'bio' => 'nullable|string',
+            'contact' => 'nullable|string|max:255',
         ]);
     
        
@@ -90,11 +92,15 @@ class TrenersController extends Controller
             $treners->update([
                 'name' => $request->input('name'),
                 'image' => $imagePath,
+                'bio' => $request->input('bio'),
+                'contact' => $request->input('contact'),
             ]);
         } else {
           
             $treners->update([
                 'name' => $request->input('name'),
+                'bio' => $request->input('bio'),
+                'contact' => $request->input('contact'),
             ]);
         }
     
