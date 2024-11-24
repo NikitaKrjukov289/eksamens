@@ -2,6 +2,8 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
         }
 
         .header {
@@ -33,6 +35,50 @@
 
         .header .button:hover {
             background-color: #1d4ed8;
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-form input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-right: 10px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-form input[type="text"]:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+            outline: none;
+        }
+
+        .search-form button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-form button:hover {
+            background-color: #2563eb;
         }
 
         .trainers-container {
@@ -110,30 +156,58 @@
         .trainer-card .button.delete:hover {
             background-color: #dc2626;
         }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            padding: 8px 16px;
+            margin: 0 5px;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .pagination a:hover {
+            background-color: #2563eb;
+        }
+
+        .pagination .disabled {
+            background-color: #e5e7eb;
+            color: #9ca3af;
+        }
     </style>
 
-    <!-- Header -->
+   
     <div class="header">
         <h1>Treneri</h1>
         <a href="{{ route('treners.create') }}" class="button">Izveidot Treneri</a>
     </div>
 
-    <!-- Trainers -->
+  
+    <div class="search-form">
+        <form action="{{ route('treners.search') }}" method="GET" style="width: 100%;">
+            <input type="text" name="query" placeholder="Ievadiet trenera vardu" value="{{ request('query') }}">
+            <button type="submit">Meklet!</button>
+        </form>
+    </div>
+
+    
     <div class="trainers-container">
         @foreach ($treneri as $treners)
         <div class="trainer-card">
 
-        @if ($treners->image)
+            @if ($treners->image)
                 <img src="{{ asset('storage/' . $treners->image) }}" alt="{{ $treners->name }}">
             @endif
             <h2>{{ $treners->name }}</h2>
 
-
-                
-
             <div class="buttons">
-            <a href="{{ route('treners.show', $treners->id) }}" class="button view">Skatīt</a>
-
+                <a href="{{ route('treners.show', $treners->id) }}" class="button view">Skatīt</a>
                 <a href="{{ route('treners.edit', $treners->id) }}" class="button edit">Rediģēt</a>
                 <form action="{{ route('treners.destroy', $treners->id) }}" method="POST" style="display: inline-block;">
                     @csrf
@@ -143,5 +217,10 @@
             </div>
         </div>
         @endforeach
+    </div>
+
+    
+    <div class="pagination">
+        {{ $treneri->links() }}
     </div>
 </x-app-layout>

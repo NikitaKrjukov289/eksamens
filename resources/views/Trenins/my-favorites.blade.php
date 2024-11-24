@@ -142,20 +142,19 @@
                 <p><strong>Apraksts:</strong> {{ $trenins->description }}</p>
                 <p><strong>Adrese:</strong> {{ $trenins->address }}</p>
 
-                <!-- Форма добавления комментария -->
                 <form action="{{ route('comments.store', $trenins->id) }}" method="POST" class="comment-form">
                     @csrf
                     <textarea name="content" placeholder="Uzrakstiet komentaru..."></textarea>
                     <input type="submit" value="Pievienot komentaru">
                 </form>
 
-                <!-- Список комментариев -->
+        
                 <h2>Komentāri:</h2>
                 <ul>
                     @foreach($trenins->comments as $comment)
                         <li>
                             {{ $comment->content }}
-                            <!-- Кнопка удаления комментария -->
+                           
                             <form action="{{ route('trenins.comments.destroy', ['trenins' => $trenins->id, 'comment' => $comment->id]) }}" method="POST" style="display:inline;">
                              @csrf
                              @method('DELETE')
@@ -167,7 +166,7 @@
                     @endforeach
                 </ul>
 
-                <!-- Кнопка для удаления тренинга из избранного -->
+                
                 <form action="{{ route('trenins.toggleFavorite', $trenins->id) }}" method="POST">
                     @csrf
                     @method('POST')

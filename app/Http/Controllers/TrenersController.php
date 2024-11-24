@@ -12,7 +12,7 @@ class TrenersController extends Controller
      */
     public function index()
     {
-        $treneri = Treners::with('trenins')->get();
+        $treneri = Treners::with('trenins')->paginate(10);
         return view('treners.index', compact('treneri'));
     }
 
@@ -52,10 +52,10 @@ class TrenersController extends Controller
     
     public function show($id)
 {
-    // Найти тренера по ID с загрузкой тренировок
+   
     $trener = Treners::with('trenins')->findOrFail($id);
 
-    // Передать данные в представление
+   
     return view('treners.show', compact('trener'));
 }
 
@@ -77,24 +77,22 @@ class TrenersController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
     
-        // Находим тренера по ID
+       
         $treners = Treners::findOrFail($id);
     
-        // Сохраняем новый путь к изображению, если было загружено новое изображение
+     
         if ($request->hasFile('image')) {
-            // Если у тренера уже есть изображение, удалим старое
-    
-            // Загружаем новое изображение
+           
             $image = $request->file('image');
             $imagePath = $image->store('images', 'public');
     
-            // Обновляем тренера с новым изображением
+          
             $treners->update([
                 'name' => $request->input('name'),
                 'image' => $imagePath,
             ]);
         } else {
-            // Если изображение не загружено, просто обновляем имя
+          
             $treners->update([
                 'name' => $request->input('name'),
             ]);
@@ -116,5 +114,19 @@ class TrenersController extends Controller
         $treners->delete();
 
         return redirect('/treners');
+    }
+
+
+    public function search(Request $request)
+    {
+       
+        $query = $request->input('query');
+
+        // Ищем тренеров по имени, используя "like" для поиска по части строки
+        // Добавляем пагинацию, по 10 результатов на странице
+        $treneri = Treners::where('name', 'like', '%' . $query . '%')->paginate(10);
+
+        
+        return view('treners.index', compact('treneri'));
     }
 }
