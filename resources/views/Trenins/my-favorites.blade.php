@@ -104,6 +104,20 @@
                 <h2>{{ $trenins->name }}</h2>
                 <p><strong>Apraksts:</strong> {{ $trenins->description }}</p>
                 <p><strong>Adrese:</strong> {{ $trenins->address }}</p>
+
+                <form action="{{ route('comments.store', $trenins->id) }}" method="POST">
+        @csrf
+        <textarea name="content" placeholder="Write your comment..."></textarea>
+        <input type="submit" value="Add Comment">
+    </form>
+
+    <!-- Список комментариев -->
+    <h2>Comments:</h2>
+    <ul>
+        @foreach($trenins->comments as $comment)
+            <li>{{ $comment->content }}</li>
+        @endforeach
+    </ul>
                 
 
              
@@ -112,6 +126,8 @@
                     @method('POST')
                     <button type="submit" class="button remove">Izdzest no maniem treniniem</button>
                 </form>
+
+                
             </div>
         @endforeach
     </div>

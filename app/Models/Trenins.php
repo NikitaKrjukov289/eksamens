@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Trenins extends Model
 {
     use HasFactory;
+
+    protected $table = 'trenins'; 
     
     protected $fillable = [
         'name',
@@ -25,4 +27,9 @@ class Trenins extends Model
     {
         return $this->belongsToMany(User::class, 'user_trenins');
     }
+
+    public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
 }

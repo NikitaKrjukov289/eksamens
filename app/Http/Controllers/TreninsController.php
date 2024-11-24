@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Trenins;
 use App\Models\Treners;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class TreninsController extends Controller
@@ -132,26 +133,21 @@ class TreninsController extends Controller
     return view('trenins.my-favorites', compact('favorites'));
 }
 
-public function addComment(Request $request, $id)
+public function storeComment(Request $request, Trenins $trenins)
 {
     $request->validate([
-        'comment' => 'required|string|max:255',
+        'content' => 'required|string|max:255',
     ]);
 
-    // Получаем текущего пользователя
-    $user = Auth::user();
-
-    // Находим тренировку
-    $trenins = Trenins::findOrFail($id);
-
-    // Создаем новый комментарий
     $comment = new Comment();
-    $comment->user_id = $user->id;
     $comment->trenins_id = $trenins->id;
-    $comment->comment = $request->input('comment');
+    $comment->content = $request->input('content');
     $comment->save();
 
-    return redirect()->back()->with('success', 'Komentars pievienots!');
+    return redirect()->route('trenins.myFavorites', $trenins->id)->with('success', 'Comment added successfully');
 }
+
+
+
 
 }
