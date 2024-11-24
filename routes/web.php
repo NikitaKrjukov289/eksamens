@@ -16,6 +16,8 @@ Route::resource('treners', TrenersController::class);
 Route::post('/trenins/{id}/toggle-favorite', [TreninsController::class, 'toggleFavorite'])->name('trenins.toggleFavorite');
 Route::get('/my-favorites', [TreninsController::class, 'myFavorites'])->name('trenins.myFavorites');
 Route::post('/trenins/{trenins}/comments', [TreninsController::class, 'storeComment'])->name('comments.store');
+Route::delete('trenins/{trenins}/comments/{comment}', [TreninsController::class, 'destroyComment'])
+    ->name('trenins.comments.destroy');
 
 
 

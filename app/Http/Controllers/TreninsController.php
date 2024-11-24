@@ -147,6 +147,16 @@ public function storeComment(Request $request, Trenins $trenins)
     return redirect()->route('trenins.myFavorites', $trenins->id)->with('success', 'Comment added successfully');
 }
 
+public function destroyComment(Trenins $trenins, Comment $comment)
+{
+    // Удаляем комментарий
+    $comment->delete();
+ 
+    // Перенаправляем на страницу с тренингом, где был удален комментарий
+    return redirect()->back()->with('success', 'Комментарий успешно удалён.');
+}
+
+
 
 
 

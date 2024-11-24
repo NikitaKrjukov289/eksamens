@@ -91,8 +91,45 @@
             background-color: #dc2626;
         }
 
-    </style>
+        /* Стили для формы добавления комментариев */
+        .comment-form textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            resize: none;
+        }
 
+        .comment-form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .comment-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Стили для кнопки удаления комментариев */
+        .comment-delete-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .comment-delete-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
 
     <div class="header">
         <h1>Mani Mīļākie Trenini</h1>
@@ -105,29 +142,37 @@
                 <p><strong>Apraksts:</strong> {{ $trenins->description }}</p>
                 <p><strong>Adrese:</strong> {{ $trenins->address }}</p>
 
-                <form action="{{ route('comments.store', $trenins->id) }}" method="POST">
-        @csrf
-        <textarea name="content" placeholder="Write your comment..."></textarea>
-        <input type="submit" value="Add Comment">
-    </form>
+                <!-- Форма добавления комментария -->
+                <form action="{{ route('comments.store', $trenins->id) }}" method="POST" class="comment-form">
+                    @csrf
+                    <textarea name="content" placeholder="Uzrakstiet komentaru..."></textarea>
+                    <input type="submit" value="Pievienot komentaru">
+                </form>
 
-    <!-- Список комментариев -->
-    <h2>Comments:</h2>
-    <ul>
-        @foreach($trenins->comments as $comment)
-            <li>{{ $comment->content }}</li>
-        @endforeach
-    </ul>
-                
+                <!-- Список комментариев -->
+                <h2>Komentāri:</h2>
+                <ul>
+                    @foreach($trenins->comments as $comment)
+                        <li>
+                            {{ $comment->content }}
+                            <!-- Кнопка удаления комментария -->
+                            <form action="{{ route('trenins.comments.destroy', ['trenins' => $trenins->id, 'comment' => $comment->id]) }}" method="POST" style="display:inline;">
+                             @csrf
+                             @method('DELETE')
+                                    <button type="submit" class="comment-delete-btn" onclick="return confirm('Vai tiešām vēlaties izdzēst šo komentāru?');">
+                                     Izdzēst
+                                  </button>
+                            </form>
+                        </li>
+                    @endforeach
+                </ul>
 
-             
+                <!-- Кнопка для удаления тренинга из избранного -->
                 <form action="{{ route('trenins.toggleFavorite', $trenins->id) }}" method="POST">
                     @csrf
                     @method('POST')
-                    <button type="submit" class="button remove">Izdzest no maniem treniniem</button>
+                    <button type="submit" class="button remove">Izdzēst no maniem treniniem</button>
                 </form>
-
-                
             </div>
         @endforeach
     </div>

@@ -7,8 +7,8 @@
 
     <!-- Background Section -->
     <div class="background" style="background-image: url('{{ asset('public/images/background.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh;">
-        <div class="overlay" style="background: rgba(0, 0, 0, 0.6); height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-            <div class="text-center text-white px-4">
+        <div class="overlay" style="background: rgba(255, 255, 255, 0.8); height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <div class="text-center text-gray-800 px-4">
                 <h1 class="text-4xl font-bold mb-4">Ventspils Trenini!</h1>
                 <p class="text-lg mb-6">
                     Šajā vietnē jūs varat pievienot savus treniņus un rakstīt tiem komentārus! Dzīvojiet sportiski, augšējā navigācijas joslā varat atrast visas nepieciešamās pogas, lai piekļūtu saviem treniņiem un treneriem.
@@ -19,6 +19,4 @@
             </div>
         </div>
     </div>
-
-    
 </x-app-layout>
