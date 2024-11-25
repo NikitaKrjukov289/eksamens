@@ -1,0 +1,88 @@
+/* Общие стили навигации */
+.navigation-bar {
+    background: linear-gradient(to right, #2563eb, #1e3a8a);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    height: 60px;
+}
+
+/* Логотип */
+.logo-img {
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Главное меню */
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: white;
+    color: #2563eb;
+}
+
+/* Профиль пользователя */
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-button:hover {
+    background-color: #2563eb;
+}
+
+.dropdown-icon {
+    width: 16px;
+    height: 16px;
+    fill: white;
+}
+
+/* Ссылки выпадающего меню */
+.dropdown-link {
+    display: block;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #2563eb;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-link:hover {
+    background-color: #f1f5f9;
+    color: #1e3a8a;
+}
