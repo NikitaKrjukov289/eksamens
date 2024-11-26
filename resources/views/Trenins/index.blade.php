@@ -121,22 +121,22 @@
         }
 
         .training-card .button.like {
-            background-color: #3b82f6;
+            background-color:  #065f46;
         }
 
         .training-card .button.like:hover {
-            background-color: #2563eb;
+            background-color:  #065f46;
         }
         .training-card .button.dislike {
-            background-color: #3b82f6;
+            background-color: #ef4444;
         }
 
         .training-card .button.dislike:hover {
-            background-color: #2563eb;
+            background-color: #ef4444;
         }
     </style>
 
-    <!-- Header -->
+    
     <div class="header">
         <h1>Pieejami Trenini</h1>
         <a href="{{ route('trenins.create') }}" class="button">Izveidot Treniņu</a>

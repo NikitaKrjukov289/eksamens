@@ -59,7 +59,7 @@ class TreninsController extends Controller
     // Найти тренировку по ID
     $trenins = Trenins::with('treners')->findOrFail($id); // Загрузка тренировки вместе с тренерами
 
-    // Передать данные в представление
+    
     return view('trenins.show', compact('trenins'));
 }
     
@@ -69,10 +69,10 @@ class TreninsController extends Controller
      */
     public function edit($id)
     {
-    // Retrieve the playlist by its ID
+    
     $trenins = Trenins::findOrFail($id);
     
-    // Pass the playlist to the view
+    
     return view('trenins.edit', ['trenins' => $trenins]);
     }
 
@@ -81,14 +81,14 @@ class TreninsController extends Controller
      */
     public function update(Request $request, $id)
 {
-    // Validate the request data
+    
     $request->validate([
         'name' => 'required',
         'description' => 'required',
         'address' => 'required'
     ]);
 
-    // Find the playlist and update its attributes
+    
     $trenins = Trenins::findOrFail($id);
     $trenins->update([
         'name' => $request->input('name'),
@@ -96,7 +96,7 @@ class TreninsController extends Controller
         'address' => $request->input('address')
     ]);
 
-    // Redirect back to the playlists index page
+    
     return redirect()->route('trenins.index')->with('success', 'Trenins atjaunots!');
 }
 
