@@ -7,7 +7,7 @@
             </a>
         </div>
 
-        <!-- Главное меню -->
+        
         <div class="menu">
             <x-nav-link :href="route('trenins.index')" :active="request()->routeIs('trenins.index')" class="nav-link">
                 Trenini
@@ -35,9 +35,16 @@
                     <x-dropdown-link :href="route('profile.edit')" class="dropdown-link">
                         {{ __('Profile') }}
                     </x-dropdown-link>
-                    <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-link">
-                        {{ __('Log Out') }}
+                    <x-dropdown-link 
+                    :href="route('logout')" 
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('Log Out') }}
                     </x-dropdown-link>
+
+                    <form method="POST" action="{{ route('logout') }}" id="logout-form" style="display: none;">
+                @csrf
+                    </form>
+
                 </x-slot>
             </x-dropdown>
         </div>
