@@ -2,8 +2,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: url('/images/fitness-bg.jpg') no-repeat center center fixed;
-            background-size: cover;
+          
         }
 
         .header {
@@ -116,7 +115,7 @@
             background-color: #45a049;
         }
 
-        /* Стили для кнопки удаления комментариев */
+        
         .comment-delete-btn {
             background-color: #dc3545;
             color: white;
