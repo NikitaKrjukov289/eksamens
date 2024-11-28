@@ -149,6 +149,26 @@
             <h2>{{ $trenins->name }}</h2>
             <p><strong>Apraksts:</strong> {{ $trenins->description }}</p>
             <p><strong>Adrese:</strong> {{ $trenins->address }}</p>
+            <p><strong>Treners:</strong> {{ $trenins->treners ? $trenins->treners->name : 'Nav izvelets' }}</p>
+
+            <form action="{{ route('trenins.addTreners', $trenins->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <label for="treners">Izveleties treneri:</label>
+                <select name="treners_id" id="treners">
+                    <option value="">-- Treners nav izvelets --</option>
+                    @foreach ($treneri as $treners)
+                    <option value="{{ $treners->id }}" @if($trenins->treners && $trenins->treners->id == $treners->id) selected @endif> 
+                            {{ $treners->name }}
+                        </option>
+                    @endforeach
+                </select>
+                <button type="submit">Saglabāt</button>
+            </form>
+
+
+
+
             <div class="buttons">
             <a href="{{ route('trenins.show', $trenins->id) }}" class="button view">Skatīt</a>
 

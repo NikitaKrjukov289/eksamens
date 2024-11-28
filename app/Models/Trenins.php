@@ -15,12 +15,12 @@ class Trenins extends Model
         'name',
         'description',
         'address',
-        'trener_id'
+        
     ];
 
     public function treners()
     {
-        return $this->belongsTo(Treners::class, 'trener_id');
+        return $this->belongsTo(Treners::class);
     }
 
     public function favoritedBy()

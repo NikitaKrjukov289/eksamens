@@ -19,6 +19,7 @@ Route::post('/trenins/{trenins}/comments', [TreninsController::class, 'storeComm
 Route::delete('trenins/{trenins}/comments/{comment}', [TreninsController::class, 'destroyComment'])
     ->name('trenins.comments.destroy');
     Route::get('/treneri/search', [TrenersController::class, 'search'])->name('treners.search');
+    Route::put('/trenins/{trenins}/add-treners', [TreninsController::class, 'addTreners'])->name('trenins.addTreners');
 
 
 

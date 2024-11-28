@@ -16,7 +16,8 @@ class TreninsController extends Controller
     public function index()
     {
         $trenini = Trenins::with('treners')->get();
-        return view('trenins.index', compact('trenini'));
+        $treneri = Treners::all();
+        return view('trenins.index', compact('trenini', 'treneri'));
     }
 
     /**
@@ -154,6 +155,19 @@ public function destroyComment(Trenins $trenins, Comment $comment)
  
    
     return redirect()->back()->with('success', 'Komentars izdzests.');
+}
+
+
+public function addTreners(Request $request, Trenins $trenins){
+
+    $validated = $request->validate([
+        'treners_id' => 'nullable|exists:treners,id',
+    ]);
+    $trenins->treners_id = $validated['treners_id'];
+    $trenins->save();
+
+    return redirect()->back()->with('success', 'Treners veiksmigi izvelets.');
+
 }
 
 

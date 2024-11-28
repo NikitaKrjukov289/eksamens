@@ -18,6 +18,6 @@ class Treners extends Model
 
     public function trenins()
 {
-    return $this->hasMany(Trenins::class, "trener_id");
+    return $this->hasMany(Trenins::class);
 }
 }
