@@ -7,12 +7,13 @@ use App\Models\Trenins;
 use App\Models\Treners;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TreninsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    use AuthorizesRequests;
+
     public function index()
     {
         $trenini = Trenins::with('treners')->get();
@@ -25,6 +26,7 @@ class TreninsController extends Controller
      */
     public function create()
     {
+        // $this->authorize('create');
        return view('trenins.create');
     }
 
@@ -50,9 +52,7 @@ class TreninsController extends Controller
         return redirect('/trenins')->with('success', 'Trenins izveidots!');
     }
 
-    /**
-     * Display the specified resource.
-     */
+  
  
       
         public function show($id)
@@ -73,7 +73,8 @@ class TreninsController extends Controller
     
     $trenins = Trenins::findOrFail($id);
     
-    
+
+   
     return view('trenins.edit', ['trenins' => $trenins]);
     }
 
@@ -82,6 +83,8 @@ class TreninsController extends Controller
      */
     public function update(Request $request, $id)
 {
+
+    
     
     $request->validate([
         'name' => 'required',
@@ -91,6 +94,7 @@ class TreninsController extends Controller
 
     
     $trenins = Trenins::findOrFail($id);
+
     $trenins->update([
         'name' => $request->input('name'),
         'description' => $request->input('description'),
@@ -107,8 +111,11 @@ class TreninsController extends Controller
     public function destroy($id) {
         $trenins = Trenins::where('id', $id);
 
+        
+
         $trenins->delete();
 
+        
         return redirect('/trenins')->with('success', 'Trenins izdzest!');
     }
 
@@ -138,11 +145,13 @@ public function storeComment(Request $request, Trenins $trenins)
 {
     $request->validate([
         'content' => 'required|string|max:255',
+       
     ]);
 
     $comment = new Comment();
     $comment->trenins_id = $trenins->id;
     $comment->content = $request->input('content');
+    $comment->user_id = auth()->user()->id;
     $comment->save();
 
     return redirect()->route('trenins.myFavorites', $trenins->id)->with('success', 'Comment added successfully');

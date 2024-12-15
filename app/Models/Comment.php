@@ -16,11 +16,17 @@ class Comment extends Model
      */
     protected $fillable = [
         'content', // Добавьте это
-        'id', // Если есть другие поля, добавьте их
+        'id',
+        'user_id' // Если есть другие поля, добавьте их
     ];
 
     public function trenins()
     {
         return $this->belongsTo(Trenins::class);
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

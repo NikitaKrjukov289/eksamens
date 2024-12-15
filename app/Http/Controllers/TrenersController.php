@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Treners;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TrenersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    use AuthorizesRequests;
+
     public function index()
     {
         $treneri = Treners::with('trenins')->paginate(10);
@@ -19,6 +19,7 @@ class TrenersController extends Controller
 
     public function create()
     {
+      
         return view('treners.create');
     }
 
@@ -63,7 +64,11 @@ class TrenersController extends Controller
   
     public function edit($id)
     {
+
+        
         $treners = Treners::findOrFail($id);
+
+      
 
 
         return view('treners.edit', ['treners' => $treners]);
@@ -113,9 +118,11 @@ class TrenersController extends Controller
     public function destroy($id)
     {
 
+        
+
         $treners = Treners::where('id', $id);
 
-       
+        
 
         $treners->delete();
 

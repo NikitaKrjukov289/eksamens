@@ -183,8 +183,11 @@
 
    
     <div class="header">
+
         <h1>Treneri</h1>
+        
         <a href="{{ route('treners.create') }}" class="button">Izveidot Treneri</a>
+       
     </div>
 
   
@@ -207,12 +210,18 @@
 
             <div class="buttons">
                 <a href="{{ route('treners.show', $treners->id) }}" class="button view">Skatīt</a>
+
+               
                 <a href="{{ route('treners.edit', $treners->id) }}" class="button edit">Rediģēt</a>
+            
+
+                
                 <form action="{{ route('treners.destroy', $treners->id) }}" method="POST" style="display: inline-block;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="button delete">Dzēst</button>
                 </form>
+             
             </div>
         </div>
         @endforeach

@@ -139,7 +139,9 @@
     
     <div class="header">
         <h1>Pieejami Trenini</h1>
-        <a href="{{ route('trenins.create') }}" class="button">Izveidot Treniņu</a>
+       
+         <a href="{{ route('trenins.create') }}" class="button">Izveidot Treniņu</a>
+       
     </div>
 
     <!-- Trainings -->
@@ -150,6 +152,8 @@
             <p><strong>Apraksts:</strong> {{ $trenins->description }}</p>
             <p><strong>Adrese:</strong> {{ $trenins->address }}</p>
             <p><strong>Treners:</strong> {{ $trenins->treners ? $trenins->treners->name : 'Nav izvelets' }}</p>
+            <!-- Ja nosacījums ir pirms ? atgriež true, tad tiek izpildīts kods pēc ?, pirms kola :.
+Ja nosacījums atgriež vērtību false, tiek izpildīts kods pēc kola :. -->
 
             <form action="{{ route('trenins.addTreners', $trenins->id) }}" method="POST">
                 @csrf
@@ -173,6 +177,16 @@
             <a href="{{ route('trenins.show', $trenins->id) }}" class="button view">Skatīt</a>
 
                 <a href="{{ route('trenins.edit', $trenins->id) }}" class="button edit">Rediģēt</a>
+           
+
+           
+                <form action="{{ route('trenins.destroy', $trenins->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="button delete">Dzēst</button>
+                </form>
+            
+
                 
                 <form action="{{ route('trenins.toggleFavorite', $trenins->id) }}" method="POST">
             @csrf
@@ -183,11 +197,7 @@
             @endif
         </form>
 
-                <form action="{{ route('trenins.destroy', $trenins->id) }}" method="POST" style="display: inline-block;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="button delete">Dzēst</button>
-                </form>
+
                 
             </div>
         </div>

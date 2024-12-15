@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('trenins_id'); 
-        
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('trenins_id')->references('id')->on('trenins')->onDelete('cascade');
         });
     }

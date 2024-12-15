@@ -140,7 +140,7 @@
                 <h2>{{ $trenins->name }}</h2>
                 <p><strong>Apraksts:</strong> {{ $trenins->description }}</p>
                 <p><strong>Adrese:</strong> {{ $trenins->address }}</p>
-
+                <p><strong>Treners:</strong> {{ $trenins->treners ? $trenins->treners->name : 'Nav izvelets' }}</p>
                 <form action="{{ route('comments.store', $trenins->id) }}" method="POST" class="comment-form">
                     @csrf
                     <textarea name="content" placeholder="Uzrakstiet komentaru..."></textarea>
@@ -152,7 +152,10 @@
                 <ul>
                     @foreach($trenins->comments as $comment)
                         <li>
-                            {{ $comment->content }}
+                        
+                            {{ $comment->content }} 
+
+                            <p>Uzrakstija: <strong>{{ $comment->user->name }}</strong></p>
                            
                             <form action="{{ route('trenins.comments.destroy', ['trenins' => $trenins->id, 'comment' => $comment->id]) }}" method="POST" style="display:inline;">
                              @csrf
