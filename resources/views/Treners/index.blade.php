@@ -204,7 +204,7 @@
         <div class="trainer-card">
 
             @if ($treners->image)
-                <img src="{{ asset('storage/' . $treners->image) }}" alt="{{ $treners->name }}">
+                <img src="{{ asset('storage/' . $treners->image) }}" alt="{{ $treners->name }}" width="200" height="200" >
             @endif
             <h2>{{ $treners->name }}</h2>
 
