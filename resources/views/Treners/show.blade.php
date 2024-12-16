@@ -70,6 +70,8 @@
         <p><strong>Kontakti:</strong> {{ $trener->contact }}</p>
 
         @if ($trener->trenins->count())
+        <!-- Pārbauda, vai trenerim ir kādas apmācības sesijas.
+count() atdod ierakstu skaitu kolekcijā $trener->trenins -->
             <div class="training-list">
                 <h2>Treniņi:</h2>
                 <ul>
