@@ -207,4 +207,4 @@ Ja nosacījums atgriež vērtību false, tiek izpildīts kods pēc kola :. -->
 
 
 
-<!-- asda@gm -->
+

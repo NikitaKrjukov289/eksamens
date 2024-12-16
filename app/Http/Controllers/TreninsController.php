@@ -57,17 +57,15 @@ class TreninsController extends Controller
       
         public function show($id)
 {
-    // Найти тренировку по ID
-    $trenins = Trenins::with('treners')->findOrFail($id); // Загрузка тренировки вместе с тренерами
+    // Apmācību sesijas meklēšana pēc ID
+    $trenins = Trenins::with('treners')->findOrFail($id); // Treniņa augšupielāde kopā ar treneriem
 
     
     return view('trenins.show', compact('trenins'));
 }
     
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit($id)
     {
     
@@ -78,9 +76,7 @@ class TreninsController extends Controller
     return view('trenins.edit', ['trenins' => $trenins]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, $id)
 {
 
@@ -105,9 +101,7 @@ class TreninsController extends Controller
     return redirect()->route('trenins.index')->with('success', 'Trenins atjaunots!');
 }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy($id) {
         $trenins = Trenins::where('id', $id);
 
@@ -124,7 +118,7 @@ class TreninsController extends Controller
         $trenins = Trenins::findOrFail($id);
         $user = auth()->user();
     
-        // Если тренировка уже в избранном, то удаляем, иначе добавляем
+        // Ja treniņš jau ir jūsu izlasē, dzēsiet to, pretējā gadījumā to pievienojiet.
         if ($user->favoriteTrenins->contains($trenins)) {
             $user->favoriteTrenins()->detach($trenins);
         } else {

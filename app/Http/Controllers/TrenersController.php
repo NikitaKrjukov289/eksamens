@@ -135,8 +135,8 @@ class TrenersController extends Controller
        
         $query = $request->input('query');
 
-        // Ищем тренеров по имени, используя "like" для поиска по части строки
-        // Добавляем пагинацию, по 10 результатов на странице
+        // Meklēt trenerus pēc nosaukuma, izmantojot “like”, lai meklētu virknes daļu.
+        // Pievienojiet lapas lappušu numerāciju, 10 rezultāti vienā lappusē
         $treneri = Treners::where('name', 'like', '%' . $query . '%')->paginate(10);
 
         

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->text('content')->after('id'); // Добавляет столбец content после trenins_id
+            $table->text('content')->after('id'); // Pievieno satura sleju aiz trenins_id
         });
         
     }

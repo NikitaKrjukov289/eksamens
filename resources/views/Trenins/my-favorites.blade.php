@@ -140,6 +140,8 @@
                 <h2>{{ $trenins->name }}</h2>
                 <p><strong>Apraksts:</strong> {{ $trenins->description }}</p>
                 <p><strong>Adrese:</strong> {{ $trenins->address }}</p>
+                
+                <!-- Parāda trenera vārdu, ja tas ir pieejams -->
                 <p><strong>Treners:</strong> {{ $trenins->treners ? $trenins->treners->name : 'Nav izvelets' }}</p>
                 <form action="{{ route('comments.store', $trenins->id) }}" method="POST" class="comment-form">
                     @csrf

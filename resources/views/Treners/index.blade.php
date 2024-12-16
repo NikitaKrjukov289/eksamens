@@ -229,6 +229,7 @@
 
     
     <div class="pagination">
-        {{ $treneri->links() }}
+        {{ $treneri->links() }} 
+        <!-- Funkcija $treneri->links() attēlo lapošanas vadības elementus (pogas vai saites uz iepriekšējām un nākamajām lapām) -->
     </div>
 </x-app-layout>
