@@ -15,9 +15,9 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'content', // Добавьте это
+        'content', 
         'id',
-        'user_id' // Если есть другие поля, добавьте их
+        'user_id' 
     ];
 
     public function trenins()

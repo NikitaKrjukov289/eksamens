@@ -11,7 +11,7 @@ use App\Policies\AdminPolicy;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
-     * Политики для авторизации.
+   
      *
      * @var array
      */
@@ -21,7 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     ];
 
     /**
-     * Запуск провайдера услуг.
+     *
      *
      * @return void
      */
@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // Другие регистрации, если нужны
+       
     }
 }
 

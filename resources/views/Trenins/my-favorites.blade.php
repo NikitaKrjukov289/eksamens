@@ -90,7 +90,7 @@
             background-color: #dc2626;
         }
 
-        /* Стили для формы добавления комментариев */
+     
         .comment-form textarea {
             width: 100%;
             height: 80px;
