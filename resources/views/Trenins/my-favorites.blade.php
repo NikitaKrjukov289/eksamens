@@ -157,8 +157,13 @@
                         
                             {{ $comment->content }} 
 
-                            <p>Uzrakstija: <strong>{{ $comment->user->name }}</strong></p>
-                           
+                            <p>Uzrakstīja: 
+                            <strong>
+                             {{ $comment->user ? $comment->user->name : 'Nezināms lietotājs' }}
+                            </strong>
+                            </p>
+
+                            @can('delete', $comment)
                             <form action="{{ route('trenins.comments.destroy', ['trenins' => $trenins->id, 'comment' => $comment->id]) }}" method="POST" style="display:inline;">
                              @csrf
                              @method('DELETE')
@@ -166,6 +171,7 @@
                                      Izdzēst
                                   </button>
                             </form>
+                            @endcan
                         </li>
                     @endforeach
                 </ul>

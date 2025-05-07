@@ -26,7 +26,7 @@ class TreninsController extends Controller
      */
     public function create()
     {
-        // $this->authorize('create');
+        $this->authorize('create', Trenins::class);
        return view('trenins.create');
     }
 
@@ -70,7 +70,7 @@ class TreninsController extends Controller
     {
     
     $trenins = Trenins::findOrFail($id);
-    
+    $this->authorize('update', $trenins);
 
    
     return view('trenins.edit', ['trenins' => $trenins]);
@@ -103,9 +103,9 @@ class TreninsController extends Controller
 
     
     public function destroy($id) {
-        $trenins = Trenins::where('id', $id);
+        $trenins = Trenins::findOrFail($id); 
 
-        
+        $this->authorize('delete', $trenins);
 
         $trenins->delete();
 

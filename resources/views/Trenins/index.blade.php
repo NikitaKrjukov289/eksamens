@@ -139,9 +139,9 @@
     
     <div class="header">
         <h1>Pieejami Trenini</h1>
-       
+        @can('create', \App\Models\Trenins::class)
          <a href="{{ route('trenins.create') }}" class="button">Izveidot Treniņu</a>
-       
+         @endcan
     </div>
 
     <!-- Trainings -->
@@ -154,7 +154,7 @@
             <p><strong>Treners:</strong> {{ $trenins->treners ? $trenins->treners->name : 'Nav izvelets' }}</p>
             <!-- Ja nosacījums ir pirms ? atgriež true, tad tiek izpildīts kods pēc ?, pirms kola :.
 Ja nosacījums atgriež vērtību false, tiek izpildīts kods pēc kola :. -->
-
+            @can('update', $trenins)
             <form action="{{ route('trenins.addTreners', $trenins->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -169,23 +169,24 @@ Ja nosacījums atgriež vērtību false, tiek izpildīts kods pēc kola :. -->
                 </select>
                 <button type="submit">Saglabāt</button>
             </form>
-
+            @endcan
 
 
 
             <div class="buttons">
             <a href="{{ route('trenins.show', $trenins->id) }}" class="button view">Skatīt</a>
-
+            @can('update', $trenins)
                 <a href="{{ route('trenins.edit', $trenins->id) }}" class="button edit">Rediģēt</a>
+                @endcan
            
 
-           
+                @can('delete', $trenins)
                 <form action="{{ route('trenins.destroy', $trenins->id) }}" method="POST" style="display: inline-block;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="button delete">Dzēst</button>
                 </form>
-            
+                @endcan
 
                 
                 <form action="{{ route('trenins.toggleFavorite', $trenins->id) }}" method="POST">

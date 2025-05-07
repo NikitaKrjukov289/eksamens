@@ -185,9 +185,9 @@
     <div class="header">
 
         <h1>Treneri</h1>
-        
+        @can('create', \App\Models\Treners::class)
         <a href="{{ route('treners.create') }}" class="button">Izveidot Treneri</a>
-       
+       @endcan
     </div>
 
   
@@ -211,17 +211,18 @@
             <div class="buttons">
                 <a href="{{ route('treners.show', $treners->id) }}" class="button view">Skatīt</a>
 
-               
+                @can('update', $treners)
                 <a href="{{ route('treners.edit', $treners->id) }}" class="button edit">Rediģēt</a>
-            
+                @endcan
 
-                
+                @can('delete', $treners)
                 <form action="{{ route('treners.destroy', $treners->id) }}" method="POST" style="display: inline-block;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="button delete">Dzēst</button>
                 </form>
-             
+                @endcan
+
             </div>
         </div>
         @endforeach
